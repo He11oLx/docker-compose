@@ -1,0 +1,14 @@
+version: "3.4"
+# https://hub.docker.com/_/mongo
+services:
+  mongo:
+    image: mongo:4.0-xenial
+    container_name: "mongo_40"
+    restart: always
+    #environment:
+    #  MONGO_INITDB_ROOT_USERNAME: root
+    #  MONGO_INITDB_ROOT_PASSWORD: 123456
+    ports:
+      - 27017:27017
+    volumes: 
+      - ./data:/data/db
