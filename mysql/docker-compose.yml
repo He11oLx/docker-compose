@@ -1,0 +1,20 @@
+version: "3.4"
+# https://hub.docker.com/_/mysql
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: "mysql"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root-password
+      TZ: Asia/Shanghai
+    command: 
+      --lower_case_table_names=1
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true 
+    ports:
+      - 3606:3606
+    volumes: 
+      - ./data:/var/lib/mysql
+      #- ./config:/etc/mysql/conf.d

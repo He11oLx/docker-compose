@@ -5,11 +5,8 @@ services:
     image: redis:4-alpine3.9
     container_name: "redis4"
     restart: always
-    #environment:
-    #  MONGO_INITDB_ROOT_USERNAME: root
-    #  MONGO_INITDB_ROOT_PASSWORD: 123456
     ports:
       - 6379:6379
     volumes: 
       - ./data:/data
-    command: redis-server --appendonly yes
+    command: redis-server --appendonly yes #--requirepass "root-password"
