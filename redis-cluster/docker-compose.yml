@@ -1,0 +1,35 @@
+version: "3.4"
+# https://hub.docker.com/_/redis
+# https://redis.io/topics/cluster-tutorial
+# https://redis.io/topics/cluster-spec
+services:
+  redis-cluster-6379:
+    image: redis:5-alpine3.12
+    container_name: "redis-cluster-6379"
+    restart: always
+    ports:
+      - 6379:6379
+    volumes: 
+      - ./data:/data
+      - ./conf:/conf
+    command: redis-server /conf/redis-6379.conf
+  redis-cluster-6380:
+    image: redis:5-alpine3.12
+    container_name: "redis-cluster-6380"
+    restart: always
+    ports:
+      - 6380:6380
+    volumes:
+      - ./data:/data
+      - ./conf:/conf
+    command: redis-server /conf/redis-6380.conf
+  redis-cluster-6381:
+    image: redis:5-alpine3.12
+    container_name: "redis-cluster-6381"
+    restart: always
+    ports:
+      - 6381:6381
+    volumes:
+      - ./data:/data
+      - ./conf:/conf
+    command: redis-server /conf/redis-6381.conf
