@@ -1,0 +1,35 @@
+version: "3.4"
+# https://hub.docker.com/_/redis
+# # https://redis.io/topics/cluster-tutorial
+# # https://redis.io/topics/cluster-spec
+services:
+  redis-master:
+    image: redis:6.0-alpine
+    ports:
+    - "16379:6379"
+    container_name: "redis-master"
+    command: redis-server
+    networks:
+    - redis-master-slave
+  redis-slave-1:
+    image: redis:6.0-alpine
+    ports:
+    - "16380:6379"
+    container_name: "redis-slave-1"
+    command: redis-server --slaveof redis-master 6379
+    depends_on:
+    - redis-master
+    networks:
+    - redis-master-slave
+  redis-slave-2:
+    image: redis:6.0-alpine
+    ports:
+    - "16381:6379"
+    container_name: "redis-slave-2"
+    command: redis-server --slaveof redis-master 6379
+    depends_on:
+    - redis-master
+    networks:
+    - redis-master-slave
+networks:
+  redis-master-slave:
